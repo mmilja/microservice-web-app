@@ -1,0 +1,3 @@
+/**
+ * Basic rest api test.
+ */
