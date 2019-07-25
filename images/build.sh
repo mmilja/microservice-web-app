@@ -29,6 +29,8 @@ Usage:
                                          Supported image names:
                                          - os-base
                                          - java-base
+                                         - ngnix-base
+                                         - react-base
     --help  | -h : help
 
 EOF
@@ -96,6 +98,14 @@ function set_image_version() {
             BUILD_DIR="${util_directory}/${BASE_IMAGES}/${JAVA_IMAGE_NAME}"
             IMAGE_DIR="${JAVA_IMAGE_NAME}"
             ;;
+        ${NGINX_IMAGE_NAME})
+            BUILD_DIR="${util_directory}/${BASE_IMAGES}/${NGINX_IMAGE_NAME}"
+            IMAGE_DIR="${NGINX_IMAGE_NAME}"
+            ;;
+        ${REACT_IMAGE_NAME})
+            BUILD_DIR="${util_directory}/${BASE_IMAGES}/${REACT_IMAGE_NAME}"
+            IMAGE_DIR="${REACT_IMAGE_NAME}"
+            ;;
 
     esac
 
@@ -107,10 +117,10 @@ function set_image_tag() {
     if [[ "${IMAGE_NAME}" = ${BACK_END_IMAGE_NAME} ]]; then
 
 		VERSION_TAG=${VERSION}
-		IMAGE_ARRAY+=(${DOCKER_REPO}/${IMAGE_NAME}:${VERSION_TAG})
+		IMAGE_ARRAY+=(${DOCKER_REPO}:${IMAGE_NAME}-${VERSION_TAG})
     else
         VERSION_TAG=${VERSION}
-        IMAGE_ARRAY+=(${DOCKER_REPO}/${IMAGE_NAME}:${VERSION_TAG})
+        IMAGE_ARRAY+=(${DOCKER_REPO}:${IMAGE_NAME}-${VERSION_TAG})
     fi
 }
 

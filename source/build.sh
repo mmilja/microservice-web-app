@@ -28,9 +28,28 @@ function set_integration_specific_variables() {
 
     MAVEN_CONTAINER_NAME="maven_container"
 
-    BACK_END_IMAGE="${DOCKER_REPO}/${MICROSERVICE_NAME}-${BACK_END}:${MICROSERVICE_VERSION}"
+    BACK_END_IMAGE="${DOCKER_REPO}:${BACK_END}-${MICROSERVICE_VERSION}"
+    FRONT_END_IMAGE="${DOCKER_REPO}:${FRONT_END}-${MICROSERVICE_VERSION}"
 }
 
+function generate_front_end_image() {
+    local source_dir="/${SOURCE_PATH}/${FRONT_END}"
+    local time_now="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+
+    echo "front-end image tag is ${FRONT_END_IMAGE}"
+
+    local dockerfile_dir="${SOURCE_PATH}/${FRONT_END}"
+
+	docker build -t ${FRONT_END_IMAGE} \
+			 -f ${dockerfile_dir}/Dockerfile \
+			 ${REPOSITORY_ROOT_DIR} \
+             --build-arg PRODUCT_NAME="${SERVICE_NAME}" \
+             --build-arg PRODUCT_BUILD_DATE="${time_now}" \
+             --build-arg PRODUCT_VCS_REF="${commit_hash}" \
+             --build-arg PRODUCT_VENDOR="${SERVICE_VENDOR}" \
+             --build-arg PRODUCT_VERSION="${MICROSERVICE_VERSION}"
+	check_result $? "Failed to build ${FRONT_END} image!"
+}
 
 
 function generate_back_end_image() {
@@ -53,7 +72,12 @@ function generate_back_end_image() {
 
 	docker build -t ${BACK_END_IMAGE} \
 			 -f ${dockerfile_dir}/Dockerfile \
-			 ${REPOSITORY_ROOT_DIR}
+			 ${REPOSITORY_ROOT_DIR} \
+             --build-arg PRODUCT_NAME="${SERVICE_NAME}" \
+             --build-arg PRODUCT_BUILD_DATE="${time_now}" \
+             --build-arg PRODUCT_VCS_REF="${commit_hash}" \
+             --build-arg PRODUCT_VENDOR="${SERVICE_VENDOR}" \
+             --build-arg PRODUCT_VERSION="${MICROSERVICE_VERSION}"
 	check_result $? "Failed to build ${BACK_END} image!"
 }
 
@@ -110,6 +134,7 @@ Usage:
 
                                              Supported target names:
                                                          - back-end
+                                                         - front-end
                                                          - all-images (all above images)
                                                          - parent-pom
 
@@ -165,15 +190,17 @@ function build() {
         install_parent_pom
     fi
 
-
     if [[ ${TARGET_NAME} = ${TARGET_BACK_END_IMAGE} ]]; then
-
         generate_back_end_image
     fi
 
-    if [[ ${TARGET_NAME} = ${TARGET_ALL_IMAGES} ]]; then
+    if [[ ${TARGET_NAME} = ${TARGET_FRONT_END_IMAGE} ]]; then
+        generate_front_end_image
+    fi
 
+    if [[ ${TARGET_NAME} = ${TARGET_ALL_IMAGES} ]]; then
         generate_back_end_image
+        generate_front_end_image
     fi
 }
 
@@ -190,14 +217,20 @@ function push() {
         push_container_image ${BACK_END_IMAGE}
     fi
 
+    if [[ ${TARGET_NAME} = ${TARGET_FRONT_END_IMAGE} ]]; then
+        push_container_image ${FRONT_END_IMAGE}
+    fi
+
     if [[ ${TARGET_NAME} = ${TARGET_ALL_IMAGES} ]]; then
         push_container_image ${BACK_END_IMAGE}
+        push_container_image ${FRONT_END_IMAGE}
     fi
 }
 
 function main() {
 
     REPOSITORY_ROOT_DIR=$(set_repo_root_dir)
+    set_product_info $REPOSITORY_ROOT_DIR
     parse_arguments $@
     set_integration_specific_variables
 

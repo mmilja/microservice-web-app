@@ -1,0 +1,46 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: web-app-frontend
+  labels:
+    app: frontend
+    chart: {{ template "web-app-chart.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: frontend
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: frontend
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: web-app-frontend
+          image: "{{ .Values.appImage.repository }}:{{ .Values.appImage.frontend }}"
+          imagePullPolicy: {{ .Values.appImage.pullPolicy }}
+#          command: [ "bash" ]
+#          args: [ "-c",
+#                    "while true; do sleep 10000; done"]
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          resources:
+{{ toYaml .Values.appResources | indent 12 }}
+    {{- with .Values.appNodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.appAffinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.appTolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

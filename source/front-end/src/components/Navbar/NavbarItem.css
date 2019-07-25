@@ -1,0 +1,26 @@
+  li.NavItem {
+    display: flex;
+    border-right: 2px solid #bbb;
+    height: 100%;
+  }
+  
+
+li.NavItem a {
+    display: flex;
+    color: black;
+    text-decoration: none;
+    padding: 14px 16px;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+  }
+
+  li.NavItem:last-child {
+    border-right: none;
+  }
+
+  li.NavItem a:hover {
+    font-weight: bold;
+  }
+  

@@ -1,0 +1,15 @@
+.article {
+    padding: 10px;
+    margin: 10px;
+    align-content: center;
+    justify-content: center;
+    text-align: left;
+
+    max-width: 75%;
+}
+
+.article-title {
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+}

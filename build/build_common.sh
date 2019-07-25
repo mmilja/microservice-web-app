@@ -3,10 +3,10 @@
 # This script holds constants and methods used by several build scripts.
 
 # repository for test docker images. Used in local testing and jenkins test job.
-# TODO create dockerhub repo
 readonly DOCKER_REPO="mmilja/webapp"
 
 readonly MICROSERVICE_NAME="web-app"
+readonly CHART="chart"
 
 readonly JAVA_BUILDER_IMG="mmilja/webapp/java-base:0.0.1"
 
@@ -16,9 +16,12 @@ readonly SKIP_UT_ARGS="-Dmaven.test.skip=true -Dspotbugs.skip -Dpmd.skip -Dcheck
 #util image names
 readonly OS_IMAGE_NAME="os-base"
 readonly JAVA_IMAGE_NAME="java-base"
+readonly NGINX_IMAGE_NAME="nginx-base"
+readonly REACT_IMAGE_NAME="react-base"
 
 # image names
 readonly BACK_END_IMAGE_NAME="back-end"
+readonly FRONT_END_IMAGE_NAME="front-end"
 readonly IMAGE_VERSION_FILE="VERSION"
 
 # directory names
@@ -31,7 +34,7 @@ readonly BASE_IMAGES='base-images'
 readonly MAVEN_RESOURCES='mvn-resources'
 
 # file names
-readonly MICROSERVICE_VERSION_FILE="MICROSERVICE_VERSION"
+readonly MICROSERVICE_VERSION_FILE="PRODUCT_INFO"
 readonly PARENT_POM_XML="pom.xml"
 readonly POM_TEMPLATE="pom.xml.template"
 
@@ -43,6 +46,7 @@ readonly TARGET_CHART="chart"
 readonly TARGET_VERSION="repository-version"
 readonly TARGET_ALL_IMAGES="all-images"
 readonly TARGET_BACK_END_IMAGE="back-end"
+readonly TARGET_FRONT_END_IMAGE="front-end"
 readonly TARGET_IMAGES="images"
 
 # placeholders for maven dependency versions. In a pom.xml, if you find a
@@ -51,6 +55,22 @@ readonly TARGET_IMAGES="images"
 # the placeholder but an exact version, that exact version will be used for
 # that dependency.
 readonly BACK_END_VERSION_TEMPLATE="%BACK_END_VERSION%"
+readonly FRONT_END_VERSION_TEMPLATE="%BACK_END_VERSION%"
+
+#product info versions
+VCS_REF=''
+SERVICE_NAME=''
+SERVICE_VERSION=''
+SERVICE_VENDOR=''
+
+#function that reads product info from a file
+function set_product_info() {
+  prodinfo=$1/build/get_product_info.sh
+  VCS_REF=$($prodinfo vcs-ref)
+  SERVICE_NAME=$($prodinfo name)
+  SERVICE_VERSION=$($prodinfo version)
+  SERVICE_VENDOR=$($prodinfo vendor)
+}
 
 # kill the container with the given name if it exists.
 # arguments:
@@ -81,14 +101,13 @@ function set_repo_root_dir() {
 
 function get_service_version() {
     local repo_dir=$(set_repo_root_dir)
-    local service_version=$(cat ${repo_dir}/${MICROSERVICE_VERSION_FILE})
-    echo ${service_version}
+    set_product_info ${repo_dir}
+    echo ${SERVICE_VERSION}
 }
 
 # Pushes container image to the docker registry.
 # User must be logged in before pushing.
 # Container image is provided as parameter.
-#TODO create docker repo
 function push_container_image() {
 
     local repo_web_manifest_uri=$1

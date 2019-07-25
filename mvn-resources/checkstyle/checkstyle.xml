@@ -5,7 +5,7 @@
 
 <module name="Checker">
 	<property name="fileExtensions" value="java, properties, xml"/>
-	
+
 	<module name="JavadocPackage"/>
 	<module name="NewlineAtEndOfFile"/>
 	<module name="Translation"/>
@@ -17,13 +17,13 @@
 		<property name="maximum" value="0"/>
 		<property name="message" value="Line has trailing spaces."/>
 	</module>
-	
+
 	<module name="TreeWalker">
 		<module name="JavadocMethod"/>
 		<module name="JavadocType"/>
 		<module name="JavadocVariable"/>
 		<module name="JavadocStyle"/>
-		
+
 		<module name="ConstantName"/>
 		<module name="LocalFinalVariableName"/>
 		<module name="LocalVariableName"/>
@@ -33,18 +33,18 @@
 		<module name="ParameterName"/>
 		<module name="StaticVariableName"/>
 		<module name="TypeName"/>
-		
+
 		<module name="AvoidStarImport"/>
 		<module name="IllegalImport"/>
 		<module name="RedundantImport"/>
 		<module name="UnusedImports"/>
-		
+
 		<module name="LineLength">
 			<property name="max" value="120"/>
 		</module>
 		<module name="MethodLength"/>
 		<module name="ParameterNumber"/>
-		
+
 		<module name="EmptyForIteratorPad"/>
 		<module name="GenericWhitespace"/>
 		<module name="MethodParamPad"/>
@@ -55,16 +55,16 @@
 		<module name="TypecastParenPad"/>
 		<module name="WhitespaceAfter"/>
 		<module name="WhitespaceAround"/>
-		
+
 		<module name="ModifierOrder"/>
 		<module name="RedundantModifier"/>
-		
+
 		<module name="AvoidNestedBlocks"/>
 		<module name="EmptyBlock"/>
 		<module name="LeftCurly"/>
 		<module name="NeedBraces"/>
 		<module name="RightCurly"/>
-		
+
 		<module name="AvoidInlineConditionals"/>
 		<module name="EmptyStatement"/>
 		<module name="EqualsHashCode"/>
@@ -78,19 +78,25 @@
 		<module name="MissingSwitchDefault"/>
 		<module name="SimplifyBooleanExpression"/>
 		<module name="SimplifyBooleanReturn"/>
-		
-		<module name="DesignForExtension"/>
+
+		<!--<module name="DesignForExtension"/> removed because of java spring -->
 		<module name="FinalClass"/>
 		<module name="HideUtilityClassConstructor"/>
 		<module name="InterfaceIsType"/>
 		<module name="VisibilityModifier"/>
-		
+
 		<module name="ArrayTypeStyle"/>
 		<module name="FinalParameters"/>
 		<module name="TodoComment">
 			<property name="format" value="(TODO)|(FIXME)"/>
 		</module>
 		<module name="UpperEll"/>
-		
+
+		<module name="SuppressionCommentFilter">
+			<property name="offCommentFormat" value="CHECKSTYLE.OFF\: ([\w\|]+)"/>
+			<property name="onCommentFormat" value="CHECKSTYLE.ON\: ([\w\|]+)"/>
+			<property name="checkFormat" value="$1"/>
+		</module>
+
 	</module>
 </module>

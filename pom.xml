@@ -13,14 +13,14 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.5.RELEASE</version>
     </parent>
-	
+
 	<modules>
 		<module>source/back-end</module>
 	</modules>
-	
+
 	<properties>
 		<revision>1.0.0-dummy</revision>
-		
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -29,8 +29,9 @@
         <checkstyleConfig>${checkstyleBaseDir}/mvn-resources/checkstyle/checkstyle.xml</checkstyleConfig>
 
         <!--DEPENDENCY VERSIONS -->
-        <spring-boot-starter-web.version>2.1.5.RELEASE</spring-boot-starter-web.version>
-        <spring-boot-starter-data-mongodb.version>2.1.5.RELEASE</spring-boot-starter-data-mongodb.version>
+        <spring-boot-starter.version>2.1.5.RELEASE</spring-boot-starter.version>
+        <mongo-java-driver.version>3.10.2</mongo-java-driver.version>
+        <apache-ommons-io.version>2.6</apache-ommons-io.version>
 
         <!--DEPENDENCY TEST VERSIONS-->
         <spring-boot-starter-test.version>2.1.5.RELEASE</spring-boot-starter-test.version>
@@ -41,12 +42,12 @@
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <org.ow2.asm.version>7.1</org.ow2.asm.version>
         <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
-        <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+        <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
         <spotbugs-maven-plugin.version>3.1.11</spotbugs-maven-plugin.version>
         <spotbugs.version>3.1.12</spotbugs.version>
         <maven-pmd-plugin.version>3.12.0</maven-pmd-plugin.version>
     </properties>
-	
+
     <build>
         <plugins>
             <plugin>

@@ -1,0 +1,24 @@
+p.FooterItem {
+    float: left;
+    border-right: 2px solid #bbb;
+    padding: 0px 4px 0px 6px;
+    justify-content: center;
+    align-content: center;
+  }
+  
+
+p.FooterItem a {
+    display: block;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  p.FooterItem:last-child {
+    border-right: none;
+  }
+
+  p.FooterItem a:hover {
+    background-color: lightblue;
+  }
+  

@@ -1,0 +1,18 @@
+.Navigation{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: whitesmoke;
+
+    height: 80px;
+    border-bottom: 3px solid gray;
+
+  }

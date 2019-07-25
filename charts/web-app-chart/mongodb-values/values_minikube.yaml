@@ -1,0 +1,153 @@
+image:
+  registry: docker.io
+  repository: bitnami/mongodb
+  tag: 4.0.9
+  debug: false
+
+usePassword: true
+
+mongodbRootPassword: root
+
+mongodbUsername: username
+mongodbPassword: password
+mongodbDatabase: database
+
+mongodbEnableIPv6: false
+
+mongodbDirectoryPerDB: true
+
+mongodbSystemLogVerbosity: 0
+mongodbDisableSystemLog: false
+
+mongodbExtraFlags: []
+
+clusterDomain: cluster.local
+
+service:
+  annotations: {}
+  type: ClusterIP
+  # clusterIP: None
+  port: 27017
+
+  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+  ##
+  # nodePort:
+
+  ## Specify the externalIP value ClusterIP service type.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#external-ips
+  # externalIPs: []
+
+replicaSet:
+  ## Whether to create a MongoDB replica set for high availability or not
+  enabled: false
+  useHostnames: true
+
+  name: rs0
+  # key: key
+
+  replicas:
+    secondary: 1
+    arbiter: 1
+  pdb:
+    minAvailable:
+      primary: 1
+      secondary: 1
+      arbiter: 1
+
+podAnnotations: {}
+
+podLabels: {}
+
+
+resources:
+ limits:
+   cpu: 500m
+   memory: 512Mi
+ requests:
+   cpu: 100m
+   memory: 256Mi
+
+
+# priorityClassName: ""
+
+nodeSelector: {}
+
+affinity: {}
+
+tolerations: []
+
+updateStrategy:
+  type: RollingUpdate
+
+persistence:
+  enabled: true
+  # existingClaim:
+
+  mountPath: /bitnami/mongodb
+
+  subPath: ""
+
+  # storageClass: "-"
+  accessModes:
+    - ReadWriteOnce
+  size: 4Gi
+  annotations: {}
+
+# extraInitContainers: |
+#   - name: do-something
+#     image: busybox
+#     command: ['do', 'something']
+
+livenessProbe:
+  enabled: true
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 6
+  successThreshold: 1
+readinessProbe:
+  enabled: true
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 6
+  successThreshold: 1
+
+initConfigMap: {}
+#  name: "init-config-map"
+
+configmap:
+  # Where and how to store data.
+  storage:
+    dbPath: /opt/bitnami/mongodb/data/db
+    journal:
+      enabled: true
+    #engine:
+    #wiredTiger:
+  # where to write logging data.
+  systemLog:
+    destination: file
+    logAppend: true
+    path: /opt/bitnami/mongodb/logs/mongodb.log
+  # network interfaces
+  net:
+    port: 27017
+    bindIp: 0.0.0.0
+    unixDomainSocket:
+      enabled: true
+      pathPrefix: /opt/bitnami/mongodb/tmp
+  # replica set options
+  #replication:
+  #  replSetName: replicaset
+  # process management options
+  processManagement:
+     fork: false
+     pidFilePath: /opt/bitnami/mongodb/tmp/mongodb.pid
+  # set parameter options
+  setParameter:
+     enableLocalhostAuthBypass: true
+  # security options
+  security:
+    authorization: disabled
+    #keyFile: /opt/bitnami/mongodb/conf/keyfile

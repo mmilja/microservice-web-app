@@ -14,8 +14,8 @@ FROM mmilja/webapp/java-base:0.0.1
 COPY --from=java-builder /usr/src/app/source/back-end/target/dependency/*.jar /usr/src/app/dependency/
 COPY --from=java-builder /usr/src/app/source/back-end/target/server-*.jar /usr/src/app/
 
-CMD java -cp /usr/src/app/*:/usr/src/app/dependency/*.jar webapp.backend.server.Application
-#CMD java -cp /usr/src/app/* webapp.backend.server.Application
+#CMD java -cp /usr/src/app/*:/usr/src/app/dependency/*.jar webapp.backend.server.Application
+CMD java -jar /usr/src/app/*.jar
 
 #Labeling the container
 ARG PRODUCT_NAME="default product name"

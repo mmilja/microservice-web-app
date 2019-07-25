@@ -1,0 +1,36 @@
+#myFooter{
+    margin-bottom: -1px;
+    background-color: whitesmoke;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    justify-content: right;
+
+    border-top: 2px solid grey;
+
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+  
+  .footer-text{
+    color: black;
+    font-weight: bold;
+    width: 50%;
+    height: 100;
+    padding: 0px 10px 0px 0px;
+
+  }
+  
+  @media screen and (max-width: 767px) {
+    #myFooter {
+        text-align: center;
+    }
+  
+    #myFooter .info{
+        text-align: center;
+    }
+  }
+  
+  
