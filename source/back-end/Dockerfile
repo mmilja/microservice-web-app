@@ -1,4 +1,4 @@
-FROM mmilja/webapp/java-base:0.0.1 as java-builder
+FROM mmilja/webapp:java-base-0.0.1 as java-builder
 
 COPY pom.xml /usr/src/app/
 COPY mvn-resources /usr/src/app/mvn-resources
@@ -9,10 +9,13 @@ WORKDIR /usr/src/app/source/back-end/
 
 RUN mvn clean install
 
-FROM mmilja/webapp/java-base:0.0.1
+FROM mmilja/webapp:java-base-0.0.1
+
+RUN mkdir /images
 
 COPY --from=java-builder /usr/src/app/source/back-end/target/dependency/*.jar /usr/src/app/dependency/
 COPY --from=java-builder /usr/src/app/source/back-end/target/server-*.jar /usr/src/app/
+COPY --from=java-builder /usr/src/app/source/back-end/src/main/resources/images/* /images/
 
 #CMD java -cp /usr/src/app/*:/usr/src/app/dependency/*.jar webapp.backend.server.Application
 CMD java -jar /usr/src/app/*.jar

@@ -5,9 +5,14 @@ package webapp.backend.server;
  */
 public enum FileEnum {
     /**
-     * Path to the image.
+     * Path to image1.
      */
-    IMG_PATH("/resources/images/image1.jpeg");
+    IMG1_PATH("/images/image1.jpeg"),
+
+    /**
+     * Path to image2.
+     */
+    IMG2_PATH("/images/image2.jpeg");
 
     /**
      * Variable holding the enum value.

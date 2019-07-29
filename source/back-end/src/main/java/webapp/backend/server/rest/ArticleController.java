@@ -1,15 +1,18 @@
 package webapp.backend.server.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import webapp.backend.server.article.Article;
 import webapp.backend.server.article.ArticleDAL;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * REST API controller class.
@@ -39,12 +42,11 @@ public class ArticleController {
     /**
      * Get article by title.
      *
-     * @param title that is provided by the URI.
      * @return Article object with set fields.
      */
     @RequestMapping(value = "/recent", method = RequestMethod.GET)
-    public final Article getRecentArticle(@PathVariable("title") final String title) {
-        return articleDAL.findByArticleTitle(title);
+    public final List<Article> getRecentArticle() {
+        return articleDAL.getRecentArticles();
 
     }
 
@@ -55,6 +57,7 @@ public class ArticleController {
      * @return inserted article.
      */
     @RequestMapping(value = "/new", method = RequestMethod.PUT)
+    @ResponseStatus(code = HttpStatus.CREATED)
     public final Article newArticle(@Valid @RequestBody final Article article) {
         return articleDAL.saveArticle(article);
 
@@ -78,6 +81,7 @@ public class ArticleController {
      * @param article object to delete.
      */
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @ResponseStatus(code = HttpStatus.ACCEPTED)
     public final void deleteArticle(@Valid @RequestBody final Article article) {
          articleDAL.deleteArticle(article);
     }

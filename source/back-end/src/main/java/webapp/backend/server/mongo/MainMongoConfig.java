@@ -26,7 +26,7 @@ public class MainMongoConfig {
     /**
      * MongoDB URI.
      */
-    private static final String MONGO_URI = "mongodb://username:password@web-app-mongodb:27017/article";
+    private static final String MONGO_URI = "mongodb://username:password@web-app-db-mongodb:27017/article";
 
     /**
      * Mongo Factory.

@@ -8,7 +8,7 @@ readonly DOCKER_REPO="mmilja/webapp"
 readonly MICROSERVICE_NAME="web-app"
 readonly CHART="chart"
 
-readonly JAVA_BUILDER_IMG="mmilja/webapp/java-base:0.0.1"
+readonly JAVA_BUILDER_IMG="mmilja/webapp:java-base-0.0.1"
 
 # maven arguments used if you want to skip the below mentioned lifecycle phases.
 readonly SKIP_UT_ARGS="-Dmaven.test.skip=true -Dspotbugs.skip -Dpmd.skip -Dcheckstyle.skip"

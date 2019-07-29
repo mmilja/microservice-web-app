@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 1
+appReplicaCount: 1
 
 appImage:
   repository: mmilja/webapp
@@ -11,8 +11,9 @@ appImage:
   pullPolicy: IfNotPresent
 
 backend:
-  type: ClusterIP
-  port: 80
+  type: NodePort
+  port: 8080
+  nodePort: 31234
 
 frontend:
   type: ClusterIP

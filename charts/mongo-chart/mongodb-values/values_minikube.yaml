@@ -10,7 +10,7 @@ mongodbRootPassword: root
 
 mongodbUsername: username
 mongodbPassword: password
-mongodbDatabase: database
+mongodbDatabase: article
 
 mongodbEnableIPv6: false
 

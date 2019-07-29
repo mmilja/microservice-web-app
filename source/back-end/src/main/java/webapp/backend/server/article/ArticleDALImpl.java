@@ -59,7 +59,7 @@ public class ArticleDALImpl implements ArticleDAL {
     @Override
     public List<Article> getRecentArticles(final int limit) {
         Query query = new Query();
-        query.with(new Sort(new Sort.Order(Sort.Direction.ASC, "time").ignoreCase()));
+        query.with(new Sort(new Sort.Order(Sort.Direction.ASC, "time")));
         query.limit(limit);
 
         return mongoTemplate.find(query, Article.class);

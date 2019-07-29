@@ -11,7 +11,8 @@ spec:
   type: {{ .Values.backend.type }}
   ports:
     - port: {{ .Values.backend.port }}
-      targetPort: http
+      targetPort: 8080
+      nodePort: {{ .Values.backend.nodePort }}
       protocol: TCP
       name: http
   selector:

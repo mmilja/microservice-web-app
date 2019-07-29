@@ -17,6 +17,7 @@ RUN npm install -y && \
 FROM mmilja/webapp:nginx-base-0.0.1
 
 COPY --from=react-builder /build/build /usr/share/nginx/html
+COPY source/front-end/default.conf /etc/nginx/conf.d
 
 EXPOSE 80/tcp
 

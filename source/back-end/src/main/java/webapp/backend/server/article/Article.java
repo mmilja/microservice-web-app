@@ -2,12 +2,15 @@ package webapp.backend.server.article;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
 /**
  * Article object definition.
  */
+@Document(collection = "article")
 public final class Article {
 
     /**
@@ -45,6 +48,7 @@ public final class Article {
     /**
      * Time article was written.
      */
+    @Indexed(unique = true)
     private LocalDateTime time;
 
     /**

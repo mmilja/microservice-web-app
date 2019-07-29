@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Base64 from 'base-64';
 import './Article.css';
 
 export default class Article extends Component {
@@ -11,19 +10,19 @@ export default class Article extends Component {
     }
 
     componentDidMount() {
-        let restHeaders = new Headers();
-        var uri = 'http://backend/article/' + this.state.articleHighlight.title;
-        restHeaders.set('Authorization', 'Basic ' + Base64.encode("Database:Access"));
+        var uri = '/api/article/' + this.state.articleHighlight.title;
 
+        console.log("Executing the rest query at: " + uri)
 
-        fetch(uri, {
-            method: 'GET',
-            headers: restHeaders})
-        .then(res => res.json())
-        .then((data) => {
-            this.setState({article: data})
+        fetch(uri)
+        .then(res => {
+            console.log(res);
+            res.json();
         })
-        .catch(console.log)
+        .then((data) => {
+            this.setState({article: data});
+        })
+        .catch(console.log);
     }
 
     render() {

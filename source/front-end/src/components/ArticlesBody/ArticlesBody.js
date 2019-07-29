@@ -13,18 +13,18 @@ export default class ArticlesBody extends Component {
     }
     
     componentDidMount() {
-        let restHeaders = new Headers();
-        var uri = 'http://backend/article/recent';
-        restHeaders.set('Authorization', 'Basic ' + Base64.encode("Database:Access"));
+        var uri = '/api/article/recent';
 
+        console.log("Executing the rest query at: " + uri)
 
-        fetch(uri, {
-            method: 'GET',
-            headers: restHeaders})
-        .then(res => res.json())
+        fetch(uri)
+        .then(res => {
+            console.log(res);
+            res.json();
+        })
         .then((data) => {
-            this.setState({articleHighlight: data});
             console.log(data);
+            this.setState({articleHighlight: data});
         })
         .catch(console.log)
     }
