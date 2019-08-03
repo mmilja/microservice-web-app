@@ -5,24 +5,25 @@ export default class Article extends Component {
 
     constructor(props){
         super(props);
-        
-        this.state = this.props.stateProp;
-    }
 
-    componentDidMount() {
-        var uri = '/api/article/' + this.state.articleHighlight.title;
+        this.state = {
+            article: []
+        }
+
+        let title = this.props.stateProp.title;
+
+        var uri = 'http://10.0.2.15:31234/article/' + title;
 
         console.log("Executing the rest query at: " + uri)
 
         fetch(uri)
         .then(res => {
-            console.log(res);
-            res.json();
+            var prom = res.json();
+            prom.then(data => {
+                this.setState({article: data});
+            })
         })
-        .then((data) => {
-            this.setState({article: data});
-        })
-        .catch(console.log);
+        .catch(console.log)
     }
 
     render() {
@@ -48,7 +49,7 @@ export default class Article extends Component {
 
             <div class="article-author">
                 <div class="author-info">
-                    <a href="#" class="author-name">{this.state.article.author}, <span>The Author</span></a>
+                    <p class="author-name">{this.state.article.author}, <span>The Author</span></p>
                 </div>
             </div>
         </div>

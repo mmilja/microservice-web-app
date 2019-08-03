@@ -2,11 +2,6 @@
   "name": "marko-react",
   "version": "0.1.0",
   "private": true,
-  "proxy": {
-    "/api": {
-      "target": "http://10.0.2.15:31234"
-    }
-  },
   "dependencies": {
     "base-64": "^0.1.0",
     "prop-types": "^15.6.0",

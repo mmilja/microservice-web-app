@@ -12,7 +12,7 @@ public enum FileEnum {
     /**
      * Path to image2.
      */
-    IMG2_PATH("/images/image2.jpeg");
+    IMG2_PATH("/images/image2.jpg");
 
     /**
      * Variable holding the enum value.

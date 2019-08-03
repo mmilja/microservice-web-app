@@ -38,6 +38,23 @@ public interface ArticleDAL {
     List<Article> getRecentArticles(int limit);
 
     /**
+     * Lists 5 most recentl articles with given category.
+     *
+     * @param category of the articles to get.
+     * @return recently inserted articles.
+     */
+    List<Article> getRecentArticlesByCategory(String category);
+
+    /**
+     * Lists recently inserted articles with category.
+     *
+     * @param category of the articles to get.
+     * @param limit the number of returned articles. (default 5)
+     * @return recently inserted articles.
+     */
+    List<Article> getRecentArticlesByCategory(String category, int limit);
+
+    /**
      * Lists pageSize number of articles, by using a query.
      *
      * @param pageNumber number of the current page.

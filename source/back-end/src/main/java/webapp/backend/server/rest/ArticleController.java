@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import webapp.backend.server.article.Article;
@@ -40,14 +41,25 @@ public class ArticleController {
     }
 
     /**
-     * Get article by title.
+     * Get recent article.
      *
      * @return Article object with set fields.
      */
     @RequestMapping(value = "/recent", method = RequestMethod.GET)
     public final List<Article> getRecentArticle() {
         return articleDAL.getRecentArticles();
+    }
 
+    /**
+     * Get article by title.
+     *
+     * @param category to filter for.
+     * @return Article object with set fields.
+     */
+    @RequestMapping(value = "/recentCategory", method = RequestMethod.GET)
+    public final List<Article> getRecentArticleWithCategory(
+            @RequestParam("category") final String category) {
+        return articleDAL.getRecentArticlesByCategory(category);
     }
 
     /**

@@ -100,4 +100,19 @@ public class ArticleDALImpl implements ArticleDAL {
     public void deleteArticle(final Article article) {
         mongoTemplate.remove(article);
     }
+
+    @Override
+    public List<Article> getRecentArticlesByCategory(final String category) {
+        return getRecentArticlesByCategory(category, DEFAULT_ARTICLE_NUMBER);
+    }
+
+    @Override
+    public List<Article> getRecentArticlesByCategory(final String category, final int limit) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("category").is(category));
+        query.with(new Sort(new Sort.Order(Sort.Direction.ASC, "time")));
+        query.limit(limit);
+
+        return mongoTemplate.find(query, Article.class);
+    }
 }

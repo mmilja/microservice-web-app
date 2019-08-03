@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
 import './ArticleHighlight.css';
+import { Link } from 'react-router-dom'
 
 
 export default class ArticleHighlight extends Component {
@@ -8,17 +8,24 @@ export default class ArticleHighlight extends Component {
     constructor(props){
         super(props);
         
-        this.state = this.props.stateProp;
+        this.state = {
+            article : this.props.articleProp
+        } 
+    }
+
+    handleTitleChange = () => {
+        var title = this.state.article.title
+        this.props.onArticleClick(title)
     }
 
     render() {
     return (
         <div className="ArticleHighlight">
             <div className="article-image">
-                <Route path="Article"><img src={`data:image/jpeg;base64,${this.state.articleHighlight.image}`} alt="Article" /></Route>
+                <Link to={{ pathname: "/Article", search: `?title=${this.state.article.title}`, state: this.state.article.title }}  onClick={this.handleTitleChange} ><img src={`data:image/jpeg;base64,${this.state.article.image}`} alt="Article" /></Link>
             </div>
             <div className="article-title">
-                <Route path="Article"><h1>{this.state.articleHighlight.title}</h1></Route>
+                <Link to={{ pathname: "/Article", search: `?title=${this.state.article.title}`, state: this.state.article.title }} onClick={this.handleTitleChange} ><h1>{this.state.article.title}</h1></Link>
             </div>
         </div>
     )

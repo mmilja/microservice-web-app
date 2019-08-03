@@ -12,6 +12,7 @@
     overflow: hidden;
     background-color: whitesmoke;
 
+    min-height: 80px;
     height: 80px;
     border-bottom: 3px solid gray;
 
