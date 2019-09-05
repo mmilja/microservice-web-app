@@ -7,12 +7,27 @@ public enum FileEnum {
     /**
      * Path to image1.
      */
-    IMG1_PATH("/images/image1.jpeg"),
+    IMG1_PATH("/images/image1.jpg"),
 
     /**
      * Path to image2.
      */
-    IMG2_PATH("/images/image2.jpg");
+    IMG2_PATH("/images/image2.jpg"),
+
+    /**
+     * Path to image3.
+     */
+    IMG3_PATH("/images/image3.jpg"),
+
+    /**
+     * Path to image4.
+     */
+    IMG4_PATH("/images/image4.jpg"),
+
+    /**
+     * Path to image5.
+     */
+    IMG5_PATH("/images/image5.jpg");
 
     /**
      * Variable holding the enum value.

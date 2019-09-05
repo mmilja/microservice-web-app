@@ -67,25 +67,55 @@ public class Application implements CommandLineRunner {
 
         FileEnum path1 = FileEnum.valueOf("IMG1_PATH");
         FileEnum path2 = FileEnum.valueOf("IMG2_PATH");
+        FileEnum path3 = FileEnum.valueOf("IMG3_PATH");
+        FileEnum path4 = FileEnum.valueOf("IMG4_PATH");
+        FileEnum path5 = FileEnum.valueOf("IMG5_PATH");
 
         //some random articles
         articleDAL.saveArticle(new Article(
                 LocalDateTime.now(),
                 loadImageToString(path1.getPath()),
-                "ArticleTitle1",
+                "What is Valuation? A modern business GO-TO!",
                 "ArticleContent1",
                 "ArticleAuthor1",
-                "ArticleCategory1"));
+                "News"));
 
         articleDAL.saveArticle(new Article(
                 LocalDateTime.now(),
                 loadImageToString(path2.getPath()),
-                "ArticleTitle2",
+                "What's new in STEM today?",
                 "ArticleContent2",
                 "ArticleAuthor2",
-                "ArticleCategory2"));
+                "News"));
 
-        LOGGER.info("Latest articels: " + articleDAL.getRecentArticles());
+        articleDAL.saveArticle(new Article(
+                LocalDateTime.now(),
+                loadImageToString(path3.getPath()),
+                "It's an unforgettable experience, a MISSION to...",
+                "ArticleContent3",
+                "ArticleAuthor3",
+                "Sport"));
+
+
+        articleDAL.saveArticle(new Article(
+                LocalDateTime.now(),
+                loadImageToString(path4.getPath()),
+                "SENSATIONAL, a diagram that tells your future! ",
+                "ArticleContent4",
+                "ArticleAuthor4",
+                "Lifestyle"));
+
+
+        articleDAL.saveArticle(new Article(
+                LocalDateTime.now(),
+                loadImageToString(path5.getPath()),
+                "Rise in inflation equates to a decrease in deflation.",
+                "ArticleContent5",
+                "ArticleAuthor5",
+                "News"));
+
+
+        LOGGER.info("Latest articles: " + articleDAL.getRecentArticles());
 
     }
 

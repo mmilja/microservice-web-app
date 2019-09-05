@@ -1,7 +1,8 @@
 li.NavPicture{
-  float: left;
+  display: flex;
   border-right: 2px solid #bbb;
-
+  align-content: center;
+  justify-content: center;
   height: 100%;
 }
 
