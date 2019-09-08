@@ -38,7 +38,7 @@ public final class Article {
     /**
      * Category the article belongs to.
      */
-    private String categories;
+    private String category;
 
     /**
      * Article image.
@@ -57,7 +57,7 @@ public final class Article {
      * @param time of the object.
      * @param image of the object.
      * @param content of the object.
-     * @param categories of the object.
+     * @param category of the object.
      * @param author of the object.
      * @param title of the object.
      */
@@ -66,13 +66,13 @@ public final class Article {
             final String title,
             final String content,
             final String author,
-            final String categories) {
+            final String category) {
         this.time = time;
         this.image = image;
         this.title = title;
         this.content = content;
         this.author = author;
-        this.categories = categories;
+        this.category = category;
     }
 
     /**
@@ -161,8 +161,8 @@ public final class Article {
      *
      * @return categories field value.
      */
-    public String getCategories() {
-        return categories;
+    public String getCategory() {
+        return category;
     }
 
     /**
@@ -170,8 +170,8 @@ public final class Article {
      *
      * @param categories value to set.
      */
-    public void setCategories(final String categories) {
-        this.categories = categories;
+    public void setCategory(final String categories) {
+        this.category = categories;
     }
 
     /**

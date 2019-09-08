@@ -10,9 +10,11 @@ export default class Article extends Component {
             article: []
         }
 
-        let title = this.props.stateProp.title;
+        console.log(this.props)
 
-        var uri = 'http://10.0.2.15:31234/article/' + title;
+        let id = this.props.stateProp.id;
+
+        var uri = 'http://10.0.2.15:31234/article/' + id;
 
         console.log("Executing the rest query at: " + uri)
 
@@ -41,9 +43,7 @@ export default class Article extends Component {
                         <span className="time">{this.state.article.time}</span>
                 </div>
                 <div class="article-meta">
-                    <p class="article-text">
-                        {this.state.article.content}
-                    </p>
+                    {this.state.article.content}
                 </div>
             </div>
 

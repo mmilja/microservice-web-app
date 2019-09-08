@@ -13,19 +13,19 @@ export default class ArticleHighlight extends Component {
         } 
     }
 
-    handleTitleChange = () => {
-        var title = this.state.article.title
-        this.props.onArticleClick(title)
+    handleIdChange = () => {
+        var id = this.state.article.id
+        this.props.onArticleClick(id)
     }
 
     render() {
     return (
         <div className="ArticleHighlight">
             <div className="article-image">
-                <Link to={{ pathname: "/Article", search: `?title=${this.state.article.title}`, state: this.state.article.title }}  onClick={this.handleTitleChange} ><img src={`data:image/jpeg;base64,${this.state.article.image}`} alt="Article" /></Link>
+                <Link to={{ pathname: "/Article", search: `?id=${this.state.article.id}`, state: this.state.article.id }}  onClick={this.handleIdChange} ><img src={`data:image/jpeg;base64,${this.state.article.image}`} alt="Article" /></Link>
             </div>
             <div className="article-title">
-                <Link to={{ pathname: "/Article", search: `?title=${this.state.article.title}`, state: this.state.article.title }} onClick={this.handleTitleChange} ><h1>{this.state.article.title}</h1></Link>
+                <Link to={{ pathname: "/Article", search: `?id=${this.state.article.id}`, state: this.state.article.id }} onClick={this.handleIdChange} ><h1>{this.state.article.title}</h1></Link>
             </div>
         </div>
     )

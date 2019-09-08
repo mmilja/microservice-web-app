@@ -11,8 +11,8 @@ export default class ArticlesBody extends Component {
         this.state = this.props.stateProp;
     }
 
-    handleTitleChange = (title) => {
-        this.props.onArticleClick(title);
+    handleIdChange = (id) => {
+        this.props.onArticleClick(id);
     }
 
     render()

@@ -21,7 +21,7 @@ export default class App extends Component {
             type: 'normal',
             articleHighlight: [],
             article: [],
-            title: '',
+            id: '',
         };
 
         this._appGetState = this._appGetState.bind(this);
@@ -33,6 +33,7 @@ export default class App extends Component {
         .then(res => {
             var prom = res.json();
             prom.then(data => {
+                console.log("Fetch data: " + data)
                 this.setState({articleHighlight: data})
             })
         })
@@ -57,8 +58,8 @@ export default class App extends Component {
         this.executeFetch(uri);
     }
 
-    setArticleTitle = (articleTitle) => {
-        this.setState({title: articleTitle});
+    setArticleId = (articleId) => {
+        this.setState({id: articleId});
     }
 
     _appGetState(description){
@@ -74,12 +75,12 @@ export default class App extends Component {
             <div id="App" className={this.state.type}>
                 <Navbar appGetState={this._appGetState} stateProp={this.state} />
                 <Switch>
-                    <Route exact  path='/' render={ () => <ArticlesBody stateProp={this.state} onArticleClick={this.setArticleTitle} />} />
-                    <Route path='/Home' render={ () => <ArticlesBody stateProp={this.state} onArticleClick={this.setArticleTitle} />} />
-                    <Route path='/News' render={ () => <ArticlesBody stateProp={this.state} onArticleClick={this.setArticleTitle} />} />
-                    <Route path='/Show' render={ () => <ArticlesBody stateProp={this.state} onArticleClick={this.setArticleTitle} />} />
-                    <Route path='/Sport' render={ () => <ArticlesBody stateProp={this.state} onArticleClick={this.setArticleTitle} />} />
-                    <Route path='/Lifestyle' render={ () => <ArticlesBody stateProp={this.state} onArticleClick={this.setArticleTitle} />} />
+                    <Route exact  path='/' render={ () => <ArticlesBody stateProp={this.state} onArticleClick={this.setArticleId} />} />
+                    <Route path='/Home' render={ () => <ArticlesBody stateProp={this.state} onArticleClick={this.setArticleId} />} />
+                    <Route path='/News' render={ () => <ArticlesBody stateProp={this.state} onArticleClick={this.setArticleId} />} />
+                    <Route path='/Show' render={ () => <ArticlesBody stateProp={this.state} onArticleClick={this.setArticleId} />} />
+                    <Route path='/Sport' render={ () => <ArticlesBody stateProp={this.state} onArticleClick={this.setArticleId} />} />
+                    <Route path='/Lifestyle' render={ () => <ArticlesBody stateProp={this.state} onArticleClick={this.setArticleId} />} />
                     <Route path='/Help'  render={ () => <Help appGetState={this._appGetState} stateProp={this.state} /> } />
                     <Route path='/About'  render={ () => <About appGetState={this._appGetState} stateProp={this.state} /> } />
                     <Route path="/Article" render={ () => <Article appGetState={this._appGetState} stateProp={this.state} />}/>

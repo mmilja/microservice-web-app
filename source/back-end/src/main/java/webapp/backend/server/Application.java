@@ -76,8 +76,33 @@ public class Application implements CommandLineRunner {
                 LocalDateTime.now(),
                 loadImageToString(path1.getPath()),
                 "What is Valuation? A modern business GO-TO!",
-                "ArticleContent1",
-                "ArticleAuthor1",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed lectus nulla. "
+                        + "Sed lacinia ac mi sed volutpat. Pellentesque vestibulum, mauris nec efficitur efficitur, "
+                        + "metus ipsum egestas quam, id efficitur turpis neque in sapien. Suspendisse et hendrerit dui."
+                        + " Morbi vel neque in velit volutpat vestibulum. Ut non tellus porttitor, egestas sem non, "
+                        + "convallis mauris. Duis iaculis, mi eu venenatis molestie, ex erat pharetra purus, ut "
+                        + "bibendum nibh lectus sit amet mi. Mauris commodo sit amet felis a sodales. Morbi purus "
+                        + "neque, tempus eu malesuada et, porta eget nisi. Ut finibus libero quis tellus pharetra "
+                        + "dignissim.\n"
+                        + "\n"
+                        + "Donec et diam condimentum, congue velit vitae, accumsan nisi. Sed lobortis, orci eget "
+                        + "consectetur consequat, eros nunc pharetra nibh, mollis lobortis turpis odio ac sapien. "
+                        + "Integer condimentum eros metus, ac viverra augue commodo interdum. Sed a velit ut leo "
+                        + "accumsan ultrices eget ac risus. Morbi fermentum feugiat felis a facilisis. Aliquam tempor "
+                        + "nunc at turpis efficitur dignissim. Pellentesque finibus, tellus vel mollis faucibus, velit "
+                        + "metus feugiat dolor, ultricies fringilla orci sapien sit amet dui.\n"
+                        + "\n"
+                        + "Proin feugiat venenatis tellus non hendrerit. Suspendisse et mollis massa. In pharetra "
+                        + "pharetra est, nec fringilla ipsum molestie quis. Nulla in maximus ante. Morbi non libero "
+                        + "vehicula, tincidunt est nec, egestas sem. Aenean blandit eros ante, a facilisis metus "
+                        + "malesuada non. Morbi luctus elementum enim ut facilisis. In tristique in metus ut "
+                        + "cursus. Nullam ante enim, varius a nibh eleifend, egestas commodo erat. In "
+                        + "venenatis ligula condimentum odio fringilla sodales. Donec a consectetur mi, et "
+                        + "sagittis mauris. Praesent quis risus et magna porta ullamcorper consectetur id massa. "
+                        + "Curabitur elit mauris, commodo nec porttitor at, aliquet at turpis. Pellentesque quis "
+                        + "ante eu lorem tincidunt sagittis sed vel tortor. In hac habitasse platea dictumst.\n"
+                        + "\n",
+                "Dude Jackson",
                 "News"));
 
         articleDAL.saveArticle(new Article(
@@ -85,7 +110,7 @@ public class Application implements CommandLineRunner {
                 loadImageToString(path2.getPath()),
                 "What's new in STEM today?",
                 "ArticleContent2",
-                "ArticleAuthor2",
+                "Meril Flint",
                 "News"));
 
         articleDAL.saveArticle(new Article(
@@ -93,7 +118,7 @@ public class Application implements CommandLineRunner {
                 loadImageToString(path3.getPath()),
                 "It's an unforgettable experience, a MISSION to...",
                 "ArticleContent3",
-                "ArticleAuthor3",
+                "Janus Estrich",
                 "Sport"));
 
 
@@ -102,7 +127,7 @@ public class Application implements CommandLineRunner {
                 loadImageToString(path4.getPath()),
                 "SENSATIONAL, a diagram that tells your future! ",
                 "ArticleContent4",
-                "ArticleAuthor4",
+                "Joanne Narud",
                 "Lifestyle"));
 
 
@@ -111,7 +136,7 @@ public class Application implements CommandLineRunner {
                 loadImageToString(path5.getPath()),
                 "Rise in inflation equates to a decrease in deflation.",
                 "ArticleContent5",
-                "ArticleAuthor5",
+                "John Doe",
                 "News"));
 
 

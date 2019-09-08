@@ -82,9 +82,9 @@ public class ArticleDALImpl implements ArticleDAL {
     }
 
     @Override
-    public Article findByArticleTitle(final String title) {
+    public Article findByArticleId(final String id) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("title").is(title));
+        query.addCriteria(Criteria.where("id").is(id));
 
         return mongoTemplate.findOne(query, Article.class);
     }

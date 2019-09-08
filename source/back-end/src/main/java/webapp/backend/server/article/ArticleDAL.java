@@ -64,12 +64,12 @@ public interface ArticleDAL {
     List<Article> getAllArticlePaginated(int pageNumber, int pageSize);
 
     /**
-     * Queries the database by the articlename string.
+     * Queries the database by the article id string.
      *
-     * @param title to match against in the database.
+     * @param id to match against in the database.
      * @return first successful match.
      */
-    Article findByArticleTitle(String title);
+    Article findByArticleId(String id);
 
     /**
      * Updates the article object in the database.

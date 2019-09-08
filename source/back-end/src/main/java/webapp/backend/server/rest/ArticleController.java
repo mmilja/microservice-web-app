@@ -31,12 +31,12 @@ public class ArticleController {
     /**
      * Get article by title.
      *
-     * @param title that is provided by the URI.
+     * @param id that is provided by the URI.
      * @return Article object with set fields.
      */
-    @RequestMapping(value = "/{title}", method = RequestMethod.GET)
-    public final Article getArticle(@PathVariable("title") final String title) {
-        return articleDAL.findByArticleTitle(title);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public final Article getArticle(@PathVariable("id") final String id) {
+        return articleDAL.findByArticleId(id);
 
     }
 
